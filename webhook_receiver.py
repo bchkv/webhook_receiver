@@ -8,15 +8,14 @@ app = Flask(__name__)
 def webhook():
     if request.method == 'POST':
         try:
-            print("GOT SOME HOOKS!!!")
-            # subprocess.check_call('./deploy.sh', shell=True)
+            subprocess.check_call('deploy_sandra-russian-tutor-bot.sh', shell=True)
             return 'Success', 200
         except subprocess.CalledProcessError as error:
-            print(f'Error while executing deploy.sh: {error}')
+            print(f'Error while executing deploy_sandra-russian-tutor-bot.sh: {error}')
             abort(500)
     else:
         abort(400)
 
 
 if __name__ == '__main__':
-    app.run(host='34.16.137.83', port=3000)
+    app.run(host='0.0.0.0', port=3000)
